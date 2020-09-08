@@ -1,0 +1,41 @@
+#textperson{
+    border-color: #339791;
+}
+#buttonperson{
+	color: #C2F2E9;
+	border-color: #339791;
+	background-color: transparent;
+}
+#buttonperson:hover{
+	color: rgba(61, 201, 179, 1);
+	background-color: #C2F2E9;
+	border-color: #339791;
+}
+#btdapesqui{
+	color: #C2F2E9;
+	border-color: #339791;
+}
+#btdapesqui:hover{
+	color: rgba(61, 201, 179, 1);
+	background-color: #C2F2E9;
+	border-color: #339791;
+}
+#btdapesquisa{
+	color: grey;
+	border-color: #339791;
+}
+#btdapesquisa:hover{
+	color: grey;
+	background-color: #C2F2E9;
+	border-color: #000;
+}
+#dropperson{
+	color: #C2F2E9;
+	border-color: #339791;
+	background-color: #C2F2E9;
+}
+#dropperson:hover{
+	color: transparent;
+	border-color: #339791;
+	background-color: #C2F2E9;
+}
