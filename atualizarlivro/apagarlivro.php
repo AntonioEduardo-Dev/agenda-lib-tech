@@ -59,7 +59,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../emprestimo.php">Livros</a>
+              <a class="nav-link" href="../paginas/emprestimo.php">Livros</a>
             </li>
              <?php 
                 if (isset($_SESSION['logado'])) {

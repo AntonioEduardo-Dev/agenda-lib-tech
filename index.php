@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
   <link rel="shortcut icon" href="favicon.ico" >
-  <title>Projeto biblioteca</title>
+  <title>Projeto Biblioteca</title>
 
   <!-- css -->
   <link rel="icon" type="image/png" href="img/icons/favicon.ico"/>
@@ -21,12 +21,6 @@
   <link href="css/animations.css" rel="stylesheet" />
   <link href="css/style.css" rel="stylesheet">
   <link href="color/default.css" rel="stylesheet">
-  <!-- =======================================================
-    Theme Name: Bocor
-    Theme URL: https://bootstrapmade.com/bocor-bootstrap-template-nice-animation/
-    Author: BootstrapMade
-    Author URL: https://bootstrapmade.com
-  ======================================================= -->
 
 </head>
 
@@ -42,14 +36,14 @@
       <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center inner">
           <div class="animatedParent">
-            <h1 class="animated fadeInDown">BIBLIOTECA</h1>
-            <p class="animated fadeInUp">Seja bem vindo ao sistema escolar de empréstimos de livros.</p>
+            <h1 class="animated fadeInDown" style="-webkit-text-stroke-width: 2px; -webkit-text-stroke-color: #3dc9b3; font-size: 3em; color: #fffdd9;">BIBLIOTECA</h1>
+            <p class="animated fadeInUp" style="-webkit-text-stroke-width: 1px; -webkit-text-stroke-color: #3dc9b3; font-size: 2em; color: #ffffff;">Seja bem vindo ao sistema escolar de empréstimos de livros.</p>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6 col-md-offset-3 text-center">
-          <a href='emprestimo.php' class='learn-more-btn btn-scroll'>Livros</a>
+          <a href='paginas/emprestimo.php' class='learn-more-btn btn-scroll'>Livros</a>
           <a href="#about" class="learn-more-btn btn-scroll">Saiba mais</a>
         </div>
       </div>
@@ -291,19 +285,7 @@
             <li><a href="#" class="nav-link">Inicio</a></li>
             <li><a href="#intro" class="nav-link">Subir</a></li>
           </ul>
-        </div><!--
-        <div class="col-lg-6 text-right copyright">
-          &copy;Copyright - Bocor. All Rights Reserved
-          <div class="credits">
-            
-              All the links in the footer should remain intact.
-              You can delete the links only if you purchased the pro version.
-              Licensing information: https://bootstrapmade.com/license/
-              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Bocor
-           
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-          </div>
-        </div> -->
+        </div>
       </div>
     </div>
   </footer>

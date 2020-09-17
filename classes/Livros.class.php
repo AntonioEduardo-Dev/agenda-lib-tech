@@ -80,10 +80,10 @@ include_once('Connection.class.php');
 			}
 			elseif($valor==3){
 				echo "<script>alert('Livro não encontrado!');</script>"; 
-				echo "<script>window.location='./emprestimo.php';</script>";
+				echo "<script>window.location='../paginas/emprestimo.php';</script>";
 			}else{
 			    echo "<script>alert('Erro na consulta!');</script>"; 
-				echo "<script>window.location='./emprestimo.php';</script>";
+				echo "<script>window.location='../paginas/emprestimo.php';</script>";
 			}
 			
 		}
@@ -109,7 +109,7 @@ include_once('Connection.class.php');
 
 			}else{
 				echo "<script>alert('Pesquisa não encontrou resultados');</script>"; 
-				echo "<script>window.location='./emprestimo.php';</script>";
+				echo "<script>window.location='../paginas/emprestimo.php';</script>";
 			}
 		}
 		public function pesquisalivroid($idlivro){
@@ -173,7 +173,7 @@ include_once('Connection.class.php');
     			$atualizanome->execute();
     			
     			echo "<script>alert('Gênero Atualizado!');</script>"; 
-		    	echo "<script>window.location='../emprestimo.php';</script>";
+		    	echo "<script>window.location='../paginas/emprestimo.php';</script>";
 		}
 		public function editaautor($qrcode,$autor){
 			$con=new Connection();
@@ -186,7 +186,7 @@ include_once('Connection.class.php');
     			$atualizanome->execute();
     			
     			echo "<script>alert('Autor Atualizado!');</script>"; 
-		    	echo "<script>window.location='../emprestimo.php';</script>";
+		    	echo "<script>window.location='../paginas/emprestimo.php';</script>";
 		}
 		public function editaquantidade($qrcode,$quant){
 			$con=new Connection();
@@ -199,7 +199,7 @@ include_once('Connection.class.php');
     			$atualizanome->execute();
     			
     			echo "<script>alert('Quantidade Atualizada!');</script>"; 
-		    	echo "<script>window.location='../emprestimo.php';</script>";
+		    	echo "<script>window.location='../paginas/emprestimo.php';</script>";
 		}
 		public function apagarlivro($qrcode,$quantidade){
 			$con=new Connection();
@@ -231,7 +231,7 @@ include_once('Connection.class.php');
 	    			$atualizaquan->execute();
     			
     			echo "<script>alert('Quantidade Atualizada!');</script>"; 
-		    	echo "<script>window.location='../emprestimo.php';</script>";
+		    	echo "<script>window.location='../paginas/emprestimo.php';</script>";
 			    }elseif($quant==1 || $quantidade>=$quant){
     			    $sql="DELETE FROM `livros` WHERE Id_livro = :qrcode";
     			    $deletar=$conn->prepare($sql);
@@ -239,12 +239,12 @@ include_once('Connection.class.php');
         			$deletar->execute();
         			
         			echo "<script>alert('Livro Deletado!');</script>"; 
-    		    	echo "<script>window.location='../emprestimo.php';</script>";
+    		    	echo "<script>window.location='../paginas/emprestimo.php';</script>";
 			    }
 			   
 			}else{
 			        echo "<script>alert('Livro Não encontrado!');</script>"; 
-    		    	echo "<script>window.location='../emprestimo.php';</script>";
+    		    	echo "<script>window.location='../paginas/emprestimo.php';</script>";
 			}
 		}
 	}

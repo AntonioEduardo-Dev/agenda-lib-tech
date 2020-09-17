@@ -15,8 +15,8 @@
       $objxy->visualizaemprestimo();
     }
   
-  
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -55,7 +55,7 @@
               $tipo="ADMIN";
               echo "
                 <li class='nav-item'>
-                  <a class='nav-link' href='../emprestimo.php'>Livros</a>
+                  <a class='nav-link' href='emprestimo.php'>Livros</a>
                 </li>";
             }
           ?>   

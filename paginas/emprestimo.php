@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include_once 'classes/Livros.class.php';
+  include_once '../classes/Livros.class.php';
   if (isset($_POST['bt1']) && isset($_POST['bt2'])) {
     $pesquisa=$_POST['bt1'];
     $objy=new Livros();
@@ -17,6 +17,7 @@
     $y->consultalivros();
   }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -30,13 +31,13 @@
   <title>Livros</title>
 
   <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-    <link href="css/shop-homepage.css" rel="stylesheet">
+    <link href="../css/shop-homepage.css" rel="stylesheet">
   
   <!-- Custom styles for button by-eduardo -->
-    <link rel = "stylesheet" type = "text/css" href = "css/custom.css">
+    <link rel = "stylesheet" type = "text/css" href = "../css/custom.css">
 
 </head>
 
@@ -57,12 +58,12 @@
               if (isset($_SESSION['tipo'])) {
                 echo "
                 <li class='nav-item'>
-                  <a class='nav-link' href='paginas/emprestimos.php'>Emprestimos</a>
+                  <a class='nav-link' href='emprestimos.php'>Emprestimos</a>
                 </li>";
               }
               echo "
                 <li class='nav-item'>
-                  <a class='nav-link' href='editar.php'>Opções</a>
+                  <a class='nav-link' href='../editar.php'>Opções</a>
                 </li>";
             }
           ?>
@@ -83,9 +84,9 @@
                         <span class='sr-only'>Dropdown</span>
                       </button>
                       <div class='dropdown-menu' id='dropperson'>
-                        <a class='dropdown-item' href='editarusuario/editardados.php'>Opções</a>
+                        <a class='dropdown-item' href='../editarusuario/editardados.php'>Opções</a>
                         <div class='dropdown-divider'></div>
-                        <a class='dropdown-item' href='paginas/login.php?deslogar=1'>Sair</a>
+                        <a class='dropdown-item' href='login.php?deslogar=1'>Sair</a>
                       </div>
                     </div>
                 </li>";
@@ -93,14 +94,12 @@
             }else {
               echo "
                 <li class='nav-item'>
-                  <a class='nav-link' href='paginas/login.php'>Logar</a>
+                  <a class='nav-link' href='login.php'>Logar</a>
                 </li>";
             }
           ?>
           
-          
         </ul>
-        
       </div>
     </div>
     
@@ -140,13 +139,13 @@
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img class="d-block img-fluid" src="img/pj-biblioteca.jpg" alt="First slide">
+              <img class="d-block img-fluid" src="../img/pj-biblioteca_img_1.jpg" alt="First slide" style="height: 400px; width:100%;">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="img/pj-biblioteca2.jpg" alt="Second slide">
+              <img class="d-block img-fluid" src="../img/pj-biblioteca_img_2.jpg" alt="Second slide" style="height: 400px; width:100%;">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="img/pj-biblioteca3.jpg" alt="Third slide">
+              <img class="d-block img-fluid" src="../img/pj-biblioteca_img_3.jpg" alt="Third slide" style="height: 400px; width:100%;">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -171,10 +170,10 @@
                 echo "
                 <div class='col-lg-4 col-md-6 mb-4'>
                   <div class='card h-100'>
-                    <a href='livro.php?livro=".$idlivro[$i]."'><img class='card-img-top' src='img/livroopcone.jpg' alt=''></a>
+                    <a href='../livro.php?livro=".$idlivro[$i]."'><img class='card-img-top' src='../img/livroopcone.jpg' alt=''></a>
                     <div class='card-body'>
                       <h4 class='card-title'>
-                        <a href='livro.php?livro=".$idlivro[$i]."' style='color: black;'>".$livros[$i]."</a>
+                        <a href='../livro.php?livro=".$idlivro[$i]."' style='color: black;'>".$livros[$i]."</a>
                       </h4>
                       <p class='card-text'>".$generolivros[$i]."</p>
                     </div>
@@ -193,10 +192,10 @@
                 echo "
                 <div class='col-lg-4 col-md-6 mb-4'>
                   <div class='card h-100'>
-                    <a href='livro.php?livro=".$idlivro[$i]."'><img class='card-img-top' src='img/livroopcone.jpg' alt=''></a>
+                    <a href='../livro.php?livro=".$idlivro[$i]."'><img class='card-img-top' src='../img/livroopcone.jpg' alt=''></a>
                     <div class='card-body'>
                       <h4 class='card-title'>
-                        <a href='livro.php?livro=".$idlivro[$i]."' style='color: black;'>".$livros[$i]."</a>
+                        <a href='../livro.php?livro=".$idlivro[$i]."' style='color: black;'>".$livros[$i]."</a>
                       </h4>
                       <p class='card-text'>".$generolivros[$i]."</p>
                     </div>
@@ -228,21 +227,21 @@
 
   <!-- Bootstrap core JavaScript -->
 <!--===============================================================================================-->
-  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-  <script src="vendor/animsition/js/animsition.min.js"></script>
+  <script src="../vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-  <script src="vendor/bootstrap/js/popper.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../vendor/bootstrap/js/popper.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-  <script src="vendor/select2/select2.min.js"></script>
+  <script src="../vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-  <script src="vendor/daterangepicker/moment.min.js"></script>
-  <script src="vendor/daterangepicker/daterangepicker.js"></script>
+  <script src="../vendor/daterangepicker/moment.min.js"></script>
+  <script src="../vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-  <script src="vendor/countdowntime/countdowntime.js"></script>
+  <script src="../vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-  <script src="js/main.js"></script>
+  <script src="../js/main.js"></script>
 </body>
 
 </html>

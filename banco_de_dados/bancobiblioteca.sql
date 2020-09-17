@@ -56,21 +56,7 @@ CREATE TABLE `livros` (
 --
 
 INSERT INTO `livros` (`Id_livro`, `Genero`, `Titulo`, `Autor`, `Quantidade`, `Quantidadedisponivel`) VALUES
-(1, 'Classico', 'Dom Quixote', 'Miguel de Cervantes', 3, 3),
-(2, 'Romance', 'Guerra e Paz', 'Liev Tolstói', 5, 5),
-(3, 'Fantasia', 'A Montanha Mágica', 'Thomas Mann', 2, 2),
-(4, 'Imaginação', 'Cem Anos de Solidão', 'Gabriel García Márquez', 1, 1),
-(5, 'Biografia', 'Ulisses', 'James Joyce', 4, 4),
-(6, 'Fantasia', 'Em Busca do Tempo Perdido', 'Marcel Proust', 2, 2),
-(7, 'Comédia', 'A Divina Comédia', 'Dante Alighieri', 2, 2),
-(8, 'Fantasia', 'O Homem sem Qualidades', 'Robert Musil', 2, 2),
-(9, 'Terror', 'O Processo', 'Franz Kafka', 2, 2),
-(10, 'Terror', 'O Som e a Fúria', 'William Faulkner', 2, 2),
-(11, 'Historia', 'Crime e Castigo', 'Fiódor Dostoiévski', 2, 2),
-(12, 'Classico', 'Orgulho e Preconceito', 'Jane Austen,', 3, 3),
-(13, 'Biografia', 'Anna Kariênina', 'Liev Tolstói', 2, 2),
-(14, 'Fantasia', 'O Leopardo', 'Tomaso di Lampedusa', 7, 7),
-(15, 'Classico', 'Édipo Rei', 'Sófocles', 5, 5);
+(1, 'Classico', 'Xom Zuixote', 'Miguel da vantes', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -91,9 +77,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`Id_user`, `Matricula`, `Nome`, `Senha`, `Tipo`) VALUES
-(6, 2222222, 'edu', '123', NULL),
-(7, 2298963, 'Ant Eduardo', '123', 'ADMIN'),
-(8, 2300371, 'ZZ', '123', NULL);
+(6, 2222222, 'Eduardo', '123', NULL),
+(7, 2298963, 'Antonio Eduardo', '123', 'ADMIN'),
+(8, 2300371, 'Antonio', '123', NULL);
 
 -- --------------------------------------------------------
 
@@ -112,7 +98,7 @@ CREATE TABLE `usuariosescola` (
 
 INSERT INTO `usuariosescola` (`Matricula`, `Nome`) VALUES
 (2298963, 'Antonio Eduardo'),
-(2222222, 'edu'),
+(2222222, 'Edu'),
 (2300371, 'Patchola');
 
 --

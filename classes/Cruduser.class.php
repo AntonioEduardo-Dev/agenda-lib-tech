@@ -106,7 +106,7 @@
     			$atualizanome->execute();
     			
     			echo "<script>alert('Nome Atualizado!');</script>";
-    			echo "<script>window.location='../emprestimo.php';</script>";
+    			echo "<script>window.location='../paginas/emprestimo.php';</script>";
 		}
 		public function editarsenha($matricula,$senha,$senhanova){
 		    $con=new Connection();
@@ -120,7 +120,7 @@
     			$atualizanome->execute();
     			
     			echo "<script>alert('Senha Editada');</script>";
-    			echo "<script>window.location='../emprestimo.php';</script>";
+    			echo "<script>window.location='../paginas/emprestimo.php';</script>";
 		}
 	}
 ?> 

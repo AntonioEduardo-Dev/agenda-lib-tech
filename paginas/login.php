@@ -120,7 +120,7 @@
 <?php
 if (isset($_GET['deslogar'])) {
   session_unset();
-  echo "<script>window.location='../emprestimo.php';</script>";
+  echo "<script>window.location='../paginas/emprestimo.php';</script>";
 } 
 include_once '../classes/Cruduser.class.php';
   if (isset($_POST['bt4'])) {
@@ -129,6 +129,6 @@ include_once '../classes/Cruduser.class.php';
 
     $x=new Cruduser();
     $x->login($matricula,$senha);
-    echo "<script>window.location='../emprestimo.php';</script>";
+    echo "<script>window.location='../paginas/emprestimo.php';</script>";
   }
 ?>

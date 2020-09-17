@@ -223,7 +223,7 @@ include_once('Connection.class.php');
     			$atualizadata2->execute();
     			
     			echo "<script>alert('Data Atualizada!');</script>"; 
-		    	echo "<script>window.location='../emprestimo.php';</script>";
+		    	echo "<script>window.location='../paginas/emprestimo.php';</script>";
 		}
     }
 ?>
