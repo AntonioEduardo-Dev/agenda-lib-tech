@@ -107,7 +107,7 @@
           </thead>
           <tbody>
               <?php
-                  $dataatual=date('d-m-20y');
+                  $dataatual=date('y');
                   for($i=0 ; $i < $_SESSION['numerodelinhasemprestimo'] ; $i++){
                       $data=$_SESSION['empdatefinal'.$i] - $dataatual;
                       if($data>=0){$datatipo="No Prazo";}else{$datatipo="Expirado";}

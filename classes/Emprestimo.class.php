@@ -132,34 +132,34 @@ include_once('Connection.class.php');
 			$dadosarr=$consultar->fetchAll();
 			$numerosarray=$consultar->rowCount();
 			
-			$idlivro=$dadosarr[0][0];
-			
-			//consulta para verificar quantidade de livros disponiveis
-			$consul3="SELECT * FROM livros WHERE Id_livro=:idlivro";
-			$consulta3=$conn->prepare($consul3);
-			$consulta3->bindValue(':idlivro',$idlivro);
-			$consulta3->execute();
-			$arraylivros=$consulta3->fetchAll();
-			$quantidadedispo=$arraylivros[0][5];
-			
 			if($numerosarray>0){
-			    $del="DELETE FROM emprestimos WHERE FK_id_livro=:idlivro and Matricula=:matricula";
-			    $deletar=$conn->prepare($del);
-    			$deletar->bindValue(':idlivro',$idlivro);
-    			$deletar->bindValue(':matricula',$matricula);
-    			$deletar->execute();
-    			
-    			$livrodevolvido=$quantidadedispo+1;
-                			    
-                $upd="UPDATE livros SET Quantidadedisponivel=:livrodevolvido WHERE Id_livro=:idlivro";
-                $update=$conn->prepare($upd);
-                $update->bindValue(':livrodevolvido',$livrodevolvido);
-                $update->bindValue(':idlivro',$idlivro);
-                $update->execute();
-                
-                echo "<script>alert('Emprestimo Terminado!');</script>";
-                echo "<script>window.location='emprestimos.php';</script>";
-			    
+				$idlivro=$dadosarr[0][0];
+				
+				//consulta para verificar quantidade de livros disponiveis
+				$consul3="SELECT * FROM livros WHERE Id_livro=:idlivro";
+				$consulta3=$conn->prepare($consul3);
+				$consulta3->bindValue(':idlivro',$idlivro);
+				$consulta3->execute();
+				$arraylivros=$consulta3->fetchAll();
+				$quantidadedispo=$arraylivros[0][5];
+				
+					$del="DELETE FROM emprestimos WHERE FK_id_livro=:idlivro and Matricula=:matricula";
+					$deletar=$conn->prepare($del);
+					$deletar->bindValue(':idlivro',$idlivro);
+					$deletar->bindValue(':matricula',$matricula);
+					$deletar->execute();
+					
+					$livrodevolvido=$quantidadedispo+1;
+									
+					$upd="UPDATE livros SET Quantidadedisponivel=:livrodevolvido WHERE Id_livro=:idlivro";
+					$update=$conn->prepare($upd);
+					$update->bindValue(':livrodevolvido',$livrodevolvido);
+					$update->bindValue(':idlivro',$idlivro);
+					$update->execute();
+					
+					echo "<script>alert('Emprestimo Terminado!');</script>";
+					echo "<script>window.location='emprestimos.php';</script>";
+					
 			}else{
 			    echo "<script>alert('Não há existência desse emprestimo!');</script>";
 			    //echo "<script>window.location='livro.php?livro=".$idlivro."';</script>";
