@@ -8,7 +8,7 @@ OBS:SISTEMA DESENVOLVIDO PARA GERENCIAR BIBLIOTECAS ESCOLARES.
 OBS: AS IMAGENS SÃO MERAMENTE ILUSTRATIVAS.
 
 Home:
-![Capturar](https://user-images.githubusercontent.com/56364149/92526630-32874580-f1fc-11ea-8c19-45c2563efce9.JPG)
+![Captura de tela 2020-09-17 110250](https://user-images.githubusercontent.com/56364149/93482873-8f5abe00-f8d6-11ea-9443-4df3d8f86e2d.png)
 
 Livros:
-![Capturar2](https://user-images.githubusercontent.com/56364149/92526819-7712e100-f1fc-11ea-94e3-0eeb8cc0bee5.JPG)
+![Captura de tela 2020-09-17 110259](https://user-images.githubusercontent.com/56364149/93482890-941f7200-f8d6-11ea-9838-59e92ec0bc76.png)
