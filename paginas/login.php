@@ -128,7 +128,11 @@ include_once '../classes/Cruduser.class.php';
     $senha=$_POST['bt2'];
 
     $x=new Cruduser();
-    $x->login($matricula,$senha);
-    echo "<script>window.location='../paginas/emprestimo.php';</script>";
+    if($x->login($matricula,$senha)){
+      echo "<script>window.location='../paginas/emprestimo.php';</script>";
+    }else{
+				echo "<script>alert('Dados incorretos');</script>";
+				echo "<script>window.location='./login.php';</script>"; 
+    }
   }
 ?>

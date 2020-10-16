@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `id9573816_bancobiblioteca`
+-- Database: `bancobiblioteca`
 --
 
 -- --------------------------------------------------------
@@ -56,7 +56,12 @@ CREATE TABLE `livros` (
 --
 
 INSERT INTO `livros` (`Id_livro`, `Genero`, `Titulo`, `Autor`, `Quantidade`, `Quantidadedisponivel`) VALUES
-(1, 'Classico', 'Xom Zuixote', 'Miguel da vantes', 3, 3);
+(1, 'Classico', 'Xom Zuixote', 'Miguel da Arantes', 3, 3),
+(2, 'Classico', 'Zuixote Jp', 'Vantes', 4, 4),
+(3, 'Classico', 'Zui xote', 'Miguel da vantes', 3, 3),
+(4, 'Romance', 'Amorz', 'Miguels', 4, 4),
+(5, 'Suspense', 'Dak', 'Mikkelz', 5, 5),
+(6, 'Suspense', 'Arkd', 'Michael', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -77,9 +82,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`Id_user`, `Matricula`, `Nome`, `Senha`, `Tipo`) VALUES
-(6, 2222222, 'Eduardo', '123', NULL),
-(7, 2298963, 'Antonio Eduardo', '123', 'ADMIN'),
-(8, 2300371, 'Antonio', '123', NULL);
+(1, 2298963, 'ADMIN - Eduardo', '123', 'ADMIN'),
+(2, 2222222, 'ALUNO', '123', NULL),
+(3, 2300371, 'ALUNO', '123', NULL);
 
 -- --------------------------------------------------------
 
@@ -97,9 +102,9 @@ CREATE TABLE `usuariosescola` (
 --
 
 INSERT INTO `usuariosescola` (`Matricula`, `Nome`) VALUES
-(2298963, 'Antonio Eduardo'),
-(2222222, 'Edu'),
-(2300371, 'Patchola');
+(2298963, 'ADMIN'),
+(2222222, 'ALUNO'),
+(2300371, 'ALUNO');
 
 --
 -- Indexes for dumped tables

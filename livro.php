@@ -1,12 +1,15 @@
 <?php 
 session_start();
 if(!isset($_POST['btlogar1'])){
-    if(isset($_GET['livro'])){
+    if(isset($_GET['livro']) && $_GET['livro'] != '' && $_GET['livro'] != 0){
         $_SESSION['livroregister']=$_GET['livro'];
         require('classes/Livros.class.php');
         $idlivro=$_GET['livro'];
         $objy=new Livros();
-        $objy->pesquisalivroid($idlivro);
+        if($objy->pesquisalivroid($idlivro)){
+        }else{
+          echo "<script>window.location='index.php';</script>";
+        }
     }else{
         echo "<script>window.location='index.php';</script>";
     }
@@ -16,7 +19,7 @@ if(!isset($_POST['btlogar1'])){
 <html lang="pt-br">
 <head>
   <link rel="shortcut icon" href="favicon.ico" >
-  <title>Opções</title>
+  <title>Emprestimo</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->  
@@ -98,20 +101,20 @@ if(!isset($_POST['btlogar1'])){
   <br><br>
   <div class="container">
     <div class="row">
-       <div class="col-lg-6" >
+      <div class="col-lg-4" >
           <?php 
           if(isset($_GET['livro'])){
-        $qrcode=$_GET['livro'];
+          $qrcode=$_GET['livro'];
 
-          $endereco='https://projeto-biblioteca.000webhostapp.com/livro.php?livro='.$qrcode;
+          $endereco='https://projetobiblioteca2020.000webhostapp.com/livro.php?livro='.$qrcode;
 
           $aux = 'qr_img0.50j/php/qr_img.php?';
-          $aux .= 'd='.$endereco.'?'; 
+          $aux .= 'd='.$endereco.'&';
           $aux .= 'e=H&';
-          $aux .= 's=6p';
+          $aux .= 's=4&';
           $aux .= 't=P';
           
-          $Dataemprestimoexibir=date('d/m/y'); 
+          $Dataemprestimoexibir=date('d-m-y'); 
 
           }else{
               echo "Selecione um livro";
@@ -119,95 +122,94 @@ if(!isset($_POST['btlogar1'])){
         ?>
 
         <div style="margin-top: 20px;">
-          <img class="rounded mx-auto d-block" style="border: 1px solid #000;" src="<?php if(isset($_GET['livro'])){ echo $aux;} ?>">
+          <img class="rounded mx-auto d-block" style="border: 1px solid #000; width:50%;" src="<?php if(isset($_GET['livro'])){ echo $aux;} ?>">
         </div>
         <br>
-       </div>
-
-        <div class="col-lg-6" style="border:1px solid #000;">
-          <table class="table table-hover" >
-          <tbody>
-              <tr>
-                <th scope="row">Id Livro:</th>
-                <td><?php echo $_SESSION['idlivro'];?></td>
+      </div>
+      <div class="col-lg-7 ml-1 mr-1" style="border:1px solid #000;">
+        <table class="table table-hover" >
+        <tbody>
+            <tr>
+              <th scope="row">Id Livro:</th>
+              <td><?php echo $_SESSION['idlivro'];?></td>
+              
+            </tr>
+            <tr>
+              <th scope="row">Título:</th>
+              <td><?php echo $_SESSION['titulolivro'];?></td>
+              
+            </tr>
+            <tr>
+              <th scope="row">Gênero:</th>
+              <td><?php echo $_SESSION['generolivro'];?></td>
+            </tr>
+            <tr>
+              <th scope="row">Autor:</th>
+              <td><?php echo $_SESSION['autorlivro'];?></td>
+            </tr>
+            <tr>
+              <th scope="row">Quantidade:</th>
+              <td><?php echo $_SESSION['quantidadelivro'];?></td>
+            </tr>
+            <tr>
+              <th scope="row">Disponível:</th>
+              <td><?php echo $_SESSION['quantidadedisponivel'];?></td>
+            </tr>
+            <tr>
+              <th scope="row">Data:</th>
+              <td><?php echo $Dataemprestimoexibir;?></td>
+            </tr>
+        </tbody>
+      </table>
+      <div class="col-lg-12 align-self-center">
+          <form action="" method="POST">
+            <?php  
+              if (isset($_SESSION['logado'])) {
                 
-              </tr>
-              <tr>
-                <th scope="row">Título:</th>
-                <td><?php echo $_SESSION['titulolivro'];?></td>
-                
-              </tr>
-              <tr>
-                <th scope="row">Gênero:</th>
-                <td><?php echo $_SESSION['generolivro'];?></td>
-              </tr>
-              <tr>
-                <th scope="row">Autor:</th>
-                <td><?php echo $_SESSION['autorlivro'];?></td>
-              </tr>
-              <tr>
-                <th scope="row">Quantidade:</th>
-                <td><?php echo $_SESSION['quantidadelivro'];?></td>
-              </tr>
-              <tr>
-                <th scope="row">Disponível:</th>
-                <td><?php echo $_SESSION['quantidadedisponivel'];?></td>
-              </tr>
-              <tr>
-                <th scope="row">Data:</th>
-                <td><?php echo $Dataemprestimoexibir;?></td>
-              </tr>
-          </tbody>
-        </table>
-        <div class="col-lg-14 align-self-center">
-            <form action="" method="POST">
-              <?php  
-                if (isset($_SESSION['logado'])) {
+                if (isset($_SESSION['tipo'])) {
+                    echo "<input class='form-control' type='text' placeholder='Matrícula' id='btdapesqui' minlength='7' maxlength='7' name='btmatricula' required style='text-align: center;'><br>";
+                  echo "<center>
+                  <button class='btn btn-outline-success btn-lg-1' type='submit' id='btdapesqui' name='btinserir' style='color:grey;'>Inserir Emprestimo</button>
                   
-                  if (isset($_SESSION['tipo'])) {
-                      echo "<input class='form-control' type='text' placeholder='Matrícula' id='btdapesqui' minlength='7' maxlength='7' name='btmatricula' required style='text-align: center;'><br>";
-                    echo "<center>
-                    <button class='btn btn-outline-success btn-lg-1' type='submit' id='btdapesqui' name='btinserir' style='color:grey;'>Inserir Emprestimo</button>
-                    
-                    <button class='btn btn-outline-success btn-lg-1' type='submit' id='btdapesqui' name='btdevolver' style='color:grey;'>Devolução de Livro</button></center><br>";
-                  }else{
-                    echo "<center>
-                  <button class='btn btn-outline-success btn-lg-1' type='submit' id='btdapesqui' name='btagendar' style='color:grey;'>Agendar Emprestimo</button><br><br>
-                  </center>";
-                  }
+                  <button class='btn btn-outline-success btn-lg-1' type='submit' id='btdapesqui' name='btdevolver' style='color:grey;'>Devolução de Livro</button></center><br>";
                 }else{
-                    echo "<!-- Botão para acionar modal -->
-                                    <center><button type='button' class='btn' id='btdapesquisa' data-toggle='modal' data-target='#ExemploModalCentralizado'>
-                                      Login
-                                    </button></center>
-                                    
-                                    <!-- Modal -->
-                                    <div class='modal fade' id='ExemploModalCentralizado' tabindex='-1' role='dialog' aria-labelledby='TituloModalCentralizado' aria-hidden='true'>
-                                      <div class='modal-dialog modal-dialog-centered' role='document'>
-                                        <div class='modal-content'>
-                                          <div class='modal-header'>
-                                            <h5 class='modal-title' id='TituloModalCentralizado'>Entrar</h5>
-                                            <button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>
-                                              <span aria-hidden='true'>&times;</span>
-                                            </button>
-                                          </div>
-                                          <div class='modal-body'>
-                                            <input class='form-control' type='text' placeholder='Matrícula' id='btdapesquisa' minlength='7' maxlength='7' name='bt1matricula' required><br />
-                                            
-                                            <input class='form-control' type='password' placeholder='Senha' id='btdapesquisa' name='bt2senha' required >
-                                          </div>
-                                          <div class='modal-footer'>
-                                            <button type='button' class='btn' id='btdapesquisa' data-dismiss='modal'>Cancelar</button>
-                                            <button type='submit' class='btn' id='btdapesquisa' name='btlogar1'>Logar</button>
-                                          </div>
+                  echo "<center>
+                <button class='btn btn-outline-success btn-lg-1' type='submit' id='btdapesqui' name='btagendar' style='color:grey;'>Agendar Emprestimo</button><br><br>
+                </center>";
+                }
+              }else{
+                  echo "<!-- Botão para acionar modal -->
+                                  <center><button type='button' class='btn' id='btdapesquisa' data-toggle='modal' data-target='#ExemploModalCentralizado'>
+                                    Login
+                                  </button></center>
+                                  
+                                  <!-- Modal -->
+                                  <div class='modal fade' id='ExemploModalCentralizado' tabindex='-1' role='dialog' aria-labelledby='TituloModalCentralizado' aria-hidden='true'>
+                                    <div class='modal-dialog modal-dialog-centered' role='document'>
+                                      <div class='modal-content'>
+                                        <div class='modal-header'>
+                                          <h5 class='modal-title' id='TituloModalCentralizado'>Entrar</h5>
+                                          <button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>
+                                            <span aria-hidden='true'>&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class='modal-body'>
+                                          <input class='form-control' type='text' placeholder='Matrícula' id='btdapesquisa' minlength='7' maxlength='7' name='bt1matricula' required><br />
+                                          
+                                          <input class='form-control' type='password' placeholder='Senha' id='btdapesquisa' name='bt2senha' required >
+                                        </div>
+                                        <div class='modal-footer'>
+                                          <button type='button' class='btn' id='btdapesquisa' data-dismiss='modal'>Cancelar</button>
+                                          <button type='submit' class='btn' id='btdapesquisa' name='btlogar1'>Logar</button>
                                         </div>
                                       </div>
-                                    </div><br />";
-                }
-              ?>
-            </form>
-          </div>
+                                    </div>
+                                  </div><br />";
+              }
+            ?>
+          </form>
         </div>
+      </div>
     </div>
   </div>
 <!--===============================================================================================-->
@@ -233,7 +235,7 @@ if(!isset($_POST['btlogar1'])){
     if(isset($_POST['btinserir'])){
         include_once('classes/Emprestimo.class.php');
         $Dataemprestimo=date('d-m-y'); 
-        $Dataemprestimofinal=date('ymd')+7;
+        $Dataemprestimofinal=date('d-m-y', strtotime('+7 days'));
         $matriculausu=$_POST['btmatricula'];
         
         $objx=new Emprestimo();
@@ -247,13 +249,15 @@ if(!isset($_POST['btlogar1'])){
     $objxy->devolverlivro($idlivro,$matricula);
     }
     if(isset($_POST['btlogar1'])){
-        include 'classes/Cruduser.class.php';
-    $matricula=$_POST['bt1matricula'];
-    $senha=$_POST['bt2senha'];
+      include 'classes/Cruduser.class.php';
+      $matricula=$_POST['bt1matricula'];
+      $senha=$_POST['bt2senha'];
 
-    $x=new Cruduser();
-    $x->login($matricula,$senha);
-    
-    echo "<script>window.location='livro.php?livro=".$_SESSION['livroregister']."';</script>";
+      $x=new Cruduser();
+      if($x->login($matricula,$senha)){
+        echo "<script>window.location='livro.php?livro=".$_SESSION['livroregister']."';</script>";
+      }else{
+        echo "<script>alert('Dados incorretos');</script>";
+      }
     }
 ?>

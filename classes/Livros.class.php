@@ -61,19 +61,19 @@
 
 			if ($valor==1) {
 				for ($i=0; $i < $numlivrosnome; $i++) { 
-			    $_SESSION['idlivro'.$i]=$todoslivros[$i][0];
-				$_SESSION['nomeslivros'.$i]=$todoslivros[$i][2];
-				$_SESSION['generolivros'.$i]=$todoslivros[$i][1];
-				$_SESSION['quantidade'.$i]=$todoslivros[$i][4];
+					$_SESSION['idlivro'.$i]=$todoslivros[$i][0];
+					$_SESSION['nomeslivros'.$i]=$todoslivros[$i][2];
+					$_SESSION['generolivros'.$i]=$todoslivros[$i][1];
+					$_SESSION['quantidade'.$i]=$todoslivros[$i][4];
 				}
 				$_SESSION['totallivros']=$numlivrosnome;
 
 			}elseif ($valor==2) {
 				for ($x=0; $x < $numlivrosid; $x++) { 
-				$_SESSION['idlivro'.$x]=$livro[$x][0];
-				$_SESSION['nomeslivros'.$x]=$livro[$x][2];
-				$_SESSION['generolivros'.$x]=$livro[$x][1];
-				$_SESSION['quantidade'.$x]=$livro[$x][4];
+					$_SESSION['idlivro'.$x]=$livro[$x][0];
+					$_SESSION['nomeslivros'.$x]=$livro[$x][2];
+					$_SESSION['generolivros'.$x]=$livro[$x][1];
+					$_SESSION['quantidade'.$x]=$livro[$x][4];
 				}
 				$_SESSION['totallivros']=$numlivrosid;
 
@@ -96,14 +96,15 @@
 			$consulta->bindValue(':genero',$genero);
 			$consulta->execute();
 			$numlivrosnome=$consulta->rowCount();
-			$todoslivros=$consulta->fetchAll();
 			
-			if ($numlivrosnome!=0) {
+			if ($numlivrosnome > 0) {
+				$todoslivros=$consulta->fetchAll();
+
 				for ($i=0; $i < $numlivrosnome; $i++) { 
-				$_SESSION['idlivro'.$i]=$todoslivros[$i][0];
-				$_SESSION['nomeslivros'.$i]=$todoslivros[$i][2];
-				$_SESSION['generolivros'.$i]=$todoslivros[$i][1];
-				$_SESSION['quantidade'.$i]=$todoslivros[$i][4];
+					$_SESSION['idlivro'.$i]=$todoslivros[$i][0];
+					$_SESSION['nomeslivros'.$i]=$todoslivros[$i][2];
+					$_SESSION['generolivros'.$i]=$todoslivros[$i][1];
+					$_SESSION['quantidade'.$i]=$todoslivros[$i][4];
 				}
 				$_SESSION['totallivros']=$numlivrosnome;
 
@@ -113,22 +114,27 @@
 			}
 		}
 		public function pesquisalivroid($idlivro){
-		$con=new Connection();
-		$conn=$con->conexao();
+			$con=new Connection();
+			$conn=$con->conexao();
 
-		$sql="SELECT * FROM livros where Id_livro=:idlivro";
-			$consulta=$conn->prepare($sql);
-			$consulta->bindValue(':idlivro',$idlivro);
-			$consulta->execute();
-			$numlivrosnome=$consulta->rowCount();
-			$livro=$consulta->fetchAll();
-            
-            $_SESSION['idlivro']=$livro[0][0];
-			$_SESSION['titulolivro']=$livro[0][2];
-			$_SESSION['generolivro']=$livro[0][1];
-			$_SESSION['autorlivro']=$livro[0][3];
-			$_SESSION['quantidadelivro']=$livro[0][4];
-			$_SESSION['quantidadedisponivel']=$livro[0][5];
+				$sql="SELECT * FROM livros where Id_livro=:idlivro";
+				$consulta=$conn->prepare($sql);
+				$consulta->bindValue(':idlivro',$idlivro);
+				$consulta->execute();
+				$numlivrosnome=$consulta->rowCount();
+				
+				if($numlivrosnome > 0){
+					$livro=$consulta->fetchAll();
+
+					$_SESSION['idlivro']=$livro[0][0];
+					$_SESSION['titulolivro']=$livro[0][2];
+					$_SESSION['generolivro']=$livro[0][1];
+					$_SESSION['autorlivro']=$livro[0][3];
+					$_SESSION['quantidadelivro']=$livro[0][4];
+					$_SESSION['quantidadedisponivel']=$livro[0][5];
+
+					return true;
+				}
 
 	    }
 

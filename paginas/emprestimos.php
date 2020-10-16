@@ -107,9 +107,9 @@
           </thead>
           <tbody>
               <?php
-                  $dataatual=date('y');
+                  $dataatual=date('d-m-y');
                   for($i=0 ; $i < $_SESSION['numerodelinhasemprestimo'] ; $i++){
-                      $data=$_SESSION['empdatefinal'.$i] - $dataatual;
+                      $data= (int)$_SESSION['empdatefinal'.$i] - (int)$dataatual;
                       if($data>=0){$datatipo="No Prazo";}else{$datatipo="Expirado";}
                       echo "<tr>
                               <th scope='row'>".$_SESSION['empids'.$i]."</th>

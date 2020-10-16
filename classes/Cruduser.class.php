@@ -58,16 +58,12 @@
 			$visualizalinha=$consulta->rowCount();
 			$viewdados=$consulta->fetchAll();
 
-			if ($visualizalinha!=0) {
-			$_SESSION['logado']=1;
-			$_SESSION['usuario']=$viewdados[0][2];
-			$_SESSION['tipo']=$viewdados[0][4];
-			
-			}elseif ($visualizalinha==0) {
-				echo "<script>alert('Dados incorretos');</script>";
-				echo "<script>window.location='./login.php';</script>"; 
-			}else{
-				echo "<script>window.location='./login.php';</script>";
+			if ($visualizalinha > 0) {
+				$_SESSION['logado']=1;
+				$_SESSION['usuario']=$viewdados[0][2];
+				$_SESSION['tipo']=$viewdados[0][4];
+				
+				return true;
 			}
 			
 		}
@@ -82,7 +78,7 @@
 			$consulta->execute();
 			$visualizalinha=$consulta->rowCount();
 			
-			if($visualizalinha>0){
+			if($visualizalinha > 0){
 			    $sql="DELETE FROM usuario WHERE Matricula=:matricula and Senha=:senha";
 			    $deletar=$conn->prepare($sql);
     			$deletar->bindValue(':matricula',$matricula);
