@@ -131,8 +131,8 @@ include_once '../classes/Cruduser.class.php';
     if($x->login($matricula,$senha)){
       echo "<script>window.location='../paginas/emprestimo.php';</script>";
     }else{
-				echo "<script>alert('Dados incorretos');</script>";
-				echo "<script>window.location='./login.php';</script>"; 
+      echo "<script>alert('Dados incorretos');</script>";
+      echo "<script>window.location='./login.php';</script>"; 
     }
   }
 ?>

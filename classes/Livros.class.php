@@ -117,24 +117,24 @@
 			$con=new Connection();
 			$conn=$con->conexao();
 
-				$sql="SELECT * FROM livros where Id_livro=:idlivro";
-				$consulta=$conn->prepare($sql);
-				$consulta->bindValue(':idlivro',$idlivro);
-				$consulta->execute();
-				$numlivrosnome=$consulta->rowCount();
-				
-				if($numlivrosnome > 0){
-					$livro=$consulta->fetchAll();
+			$sql="SELECT * FROM livros where Id_livro=:idlivro";
+			$consulta=$conn->prepare($sql);
+			$consulta->bindValue(':idlivro',$idlivro);
+			$consulta->execute();
+			$numlivrosnome=$consulta->rowCount();
+			
+			if($numlivrosnome > 0){
+				$livro=$consulta->fetchAll();
 
-					$_SESSION['idlivro']=$livro[0][0];
-					$_SESSION['titulolivro']=$livro[0][2];
-					$_SESSION['generolivro']=$livro[0][1];
-					$_SESSION['autorlivro']=$livro[0][3];
-					$_SESSION['quantidadelivro']=$livro[0][4];
-					$_SESSION['quantidadedisponivel']=$livro[0][5];
+				$_SESSION['idlivro']=$livro[0][0];
+				$_SESSION['titulolivro']=$livro[0][2];
+				$_SESSION['generolivro']=$livro[0][1];
+				$_SESSION['autorlivro']=$livro[0][3];
+				$_SESSION['quantidadelivro']=$livro[0][4];
+				$_SESSION['quantidadedisponivel']=$livro[0][5];
 
-					return true;
-				}
+				return true;
+			}
 
 	    }
 
@@ -150,62 +150,86 @@
 			$insercao->bindValue(':autor',$autor);
 			$insercao->bindValue(':quantidade',$quantidade);
 			$insercao->bindValue(':quantidadedis',$quantidadedis);
-			$insercao->execute();
-			
-			echo "<script>alert('Livro Cadastrado');</script>"; 
-			echo "<script>window.location='inserirlivro.php';</script>";
+			if($insercao->execute()){
+				echo "<script>alert('Livro Cadastrado');</script>"; 
+				echo "<script>window.location='inserirlivro.php';</script>";
+			}else{
+				echo "<script>alert('Ocorreu um erro na inserção');</script>"; 
+			}
 		}
 		public function editatitulo($qrcode,$nome){
 			$con=new Connection();
 			$conn=$con->conexao();
-			echo $qrcode.$nome;
 			
-			
-			    $upd2="UPDATE `livros` SET `Titulo`=:nome WHERE `livros`.`Id_livro` = :qrcode";
-		        $atualizatitulo=$conn->prepare($upd2);
-		      	$atualizatitulo->bindValue(':nome',$nome);
-		      	$atualizatitulo->bindValue(':qrcode',$qrcode);
-    			$atualizatitulo->execute();
-    			echo "<script>alert('Nome Atualizado!');</script>"; 
+			$upd2="UPDATE `livros` SET `Titulo`=:nome WHERE `livros`.`Id_livro` = :qrcode";
+			$atualizatitulo=$conn->prepare($upd2);
+			$atualizatitulo->bindValue(':nome',$nome);
+			$atualizatitulo->bindValue(':qrcode',$qrcode);
+			$atualizatitulo->execute();
+			$visualizalin=$atualizatitulo->rowCount();
+		
+			if($visualizalin > 0){
+				echo "<script>alert('Nome Atualizado!');</script>";
+			}else{
+				echo "<script>alert('Não foi possivel editar, verifique os dados digitados');</script>";
+			}
 		}
 		public function editagenero($qrcode,$genero){
 			$con=new Connection();
 			$conn=$con->conexao();
 			
-			 $upd="UPDATE `livros` SET `Genero`=:genero WHERE `livros`.`Id_livro` = :qrcode";
-		        $atualizanome=$conn->prepare($upd);
-    			$atualizanome->bindValue(':genero',$genero);
-    			$atualizanome->bindValue(':qrcode',$qrcode);
-    			$atualizanome->execute();
-    			
-    			echo "<script>alert('Gênero Atualizado!');</script>"; 
-		    	echo "<script>window.location='../paginas/emprestimo.php';</script>";
+			$upd="UPDATE `livros` SET `Genero`=:genero WHERE `livros`.`Id_livro` = :qrcode";
+			$atualizanome=$conn->prepare($upd);
+			$atualizanome->bindValue(':genero',$genero);
+			$atualizanome->bindValue(':qrcode',$qrcode);
+			$atualizanome->execute();
+			
+			$visualizalin=$atualizanome->rowCount();
+		
+			if($visualizalin > 0){
+				echo "<script>alert('Gênero Atualizado!');</script>"; 
+				echo "<script>window.location='../paginas/emprestimo.php';</script>";
+			}else{
+				echo "<script>alert('Não foi possivel editar, verifique os dados digitados');</script>";
+			}
 		}
 		public function editaautor($qrcode,$autor){
 			$con=new Connection();
 			$conn=$con->conexao();
 			
 			$upd="UPDATE `livros` SET `Autor`=:autor WHERE `livros`.`Id_livro` = :qrcode";
-		        $atualizanome=$conn->prepare($upd);
-    			$atualizanome->bindValue(':autor',$autor);
-    			$atualizanome->bindValue(':qrcode',$qrcode);
-    			$atualizanome->execute();
-    			
-    			echo "<script>alert('Autor Atualizado!');</script>"; 
-		    	echo "<script>window.location='../paginas/emprestimo.php';</script>";
+			$atualizanome=$conn->prepare($upd);
+			$atualizanome->bindValue(':autor',$autor);
+			$atualizanome->bindValue(':qrcode',$qrcode);
+			$atualizanome->execute();
+			
+			$visualizalin=$atualizanome->rowCount();
+		
+			if($visualizalin > 0){
+				echo "<script>alert('Autor Atualizado!');</script>"; 
+				echo "<script>window.location='../paginas/emprestimo.php';</script>";
+			}else{
+				echo "<script>alert('Não foi possivel editar, verifique os dados digitados');</script>";
+			}
 		}
 		public function editaquantidade($qrcode,$quant){
 			$con=new Connection();
 			$conn=$con->conexao();
 			
 			$upd="UPDATE `livros` SET `Quantidade`=:quant WHERE `livros`.`Id_livro` = :qrcode";
-		        $atualizanome=$conn->prepare($upd);
-    			$atualizanome->bindValue(':quant',$quant);
-    			$atualizanome->bindValue(':qrcode',$qrcode);
-    			$atualizanome->execute();
-    			
-    			echo "<script>alert('Quantidade Atualizada!');</script>"; 
-		    	echo "<script>window.location='../paginas/emprestimo.php';</script>";
+			$atualizanome=$conn->prepare($upd);
+			$atualizanome->bindValue(':quant',$quant);
+			$atualizanome->bindValue(':qrcode',$qrcode);
+			$atualizanome->execute();
+			
+			$visualizalin=$atualizanome->rowCount();
+		
+			if($visualizalin > 0){
+				echo "<script>alert('Quantidade Atualizada!');</script>"; 
+				echo "<script>window.location='../paginas/emprestimo.php';</script>";
+			}else{
+				echo "<script>alert('Não foi possivel editar, verifique os dados digitados');</script>";
+			}
 		}
 		public function apagarlivro($qrcode,$quantidade){
 			$con=new Connection();
@@ -222,7 +246,7 @@
 			$quantidadedisp=$visualizadados[0][5]-$quantidade;
 			$quantdisp=$quant-$quantidade;
 			
-			if($visualizalinha>0){
+			if($visualizalinha > 0){
 			    if($quant>1 && $quantidade<$quant){
 				    $upd="UPDATE `livros` SET `Quantidade`=:quantdisp WHERE `livros`.`Id_livro` = :qrcode";
 			        $atualizaq=$conn->prepare($upd);
@@ -236,8 +260,8 @@
 	    			$atualizaquan->bindValue(':qrcode',$qrcode);
 	    			$atualizaquan->execute();
     			
-    			echo "<script>alert('Quantidade Atualizada!');</script>"; 
-		    	echo "<script>window.location='../paginas/emprestimo.php';</script>";
+					echo "<script>alert('Quantidade Atualizada!');</script>"; 
+					echo "<script>window.location='../paginas/emprestimo.php';</script>";
 			    }elseif($quant==1 || $quantidade>=$quant){
     			    $sql="DELETE FROM `livros` WHERE Id_livro = :qrcode";
     			    $deletar=$conn->prepare($sql);
@@ -249,8 +273,8 @@
 			    }
 			   
 			}else{
-			        echo "<script>alert('Livro Não encontrado!');</script>"; 
-    		    	echo "<script>window.location='../paginas/emprestimo.php';</script>";
+				echo "<script>alert('Livro Não encontrado!');</script>"; 
+				echo "<script>window.location='../paginas/emprestimo.php';</script>";
 			}
 		}
 	}

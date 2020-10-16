@@ -13,7 +13,7 @@
 				$consulta1->execute();
 				$numusers=$consulta1->rowCount();
 
-			if ($numusers!=0) {
+			if ($numusers > 0) {
 				$pdo="SELECT * FROM usuario WHERE Matricula=:matricula";
 				$consulta=$conn->prepare($pdo);
 				$consulta->bindValue(':matricula',$matricula);
@@ -37,7 +37,7 @@
 					echo "<script>alert('Erro tente novamente!');</script>"; 
 					echo "<script>window.location='./cadastro.php';</script>";
 				}
-			}elseif ($numusers==0) {
+			}elseif ($numusers == 0) {
 				echo "<script>alert('Matricula não existente!');</script>"; 
 					echo "<script>window.location='./cadastro.php';</script>";
 			}
@@ -50,7 +50,7 @@
 			$con=new Connection();
 			$conn=$con->conexao();
 
-			$pdo="SELECT * FROM usuario WHERE Matricula=:matricula and Senha=:senha";
+			$pdo="SELECT * FROM usuario WHERE Matricula=:matricula AND Senha=:senha";
 			$consulta=$conn->prepare($pdo);
 			$consulta->bindValue(':matricula',$matricula);
 			$consulta->bindValue(':senha',$senha);
@@ -71,7 +71,7 @@
 		    $con=new Connection();
 			$conn=$con->conexao();
 			
-			$pdo="SELECT * FROM usuario WHERE Matricula=:matricula and Senha=:senha";
+			$pdo="SELECT * FROM usuario WHERE Matricula=:matricula AND Senha=:senha";
 			$consulta=$conn->prepare($pdo);
 			$consulta->bindValue(':matricula',$matricula);
 			$consulta->bindValue(':senha',$senha);
@@ -79,7 +79,7 @@
 			$visualizalinha=$consulta->rowCount();
 			
 			if($visualizalinha > 0){
-			    $sql="DELETE FROM usuario WHERE Matricula=:matricula and Senha=:senha";
+			    $sql="DELETE FROM usuario WHERE Matricula=:matricula AND Senha=:senha";
 			    $deletar=$conn->prepare($sql);
     			$deletar->bindValue(':matricula',$matricula);
     			$deletar->bindValue(':senha',$senha);
@@ -94,29 +94,39 @@
 		    $con=new Connection();
 		    $conn=$con->conexao(); 
 		    
-		    $upd="UPDATE usuario SET Nome=:nome WHERE Matricula=:matricula and Senha=:senha";
-		        $atualizanome=$conn->prepare($upd);
-    			$atualizanome->bindValue(':matricula',$matricula);
-    			$atualizanome->bindValue(':nome',$nome);
-    			$atualizanome->bindValue(':senha',$senha);
-    			$atualizanome->execute();
-    			
-    			echo "<script>alert('Nome Atualizado!');</script>";
-    			echo "<script>window.location='../paginas/emprestimo.php';</script>";
+		    $upd="UPDATE usuario SET Nome=:nome WHERE Matricula=:matricula AND Senha=:senha";
+			$atualizanome=$conn->prepare($upd);
+			$atualizanome->bindValue(':matricula',$matricula);
+			$atualizanome->bindValue(':nome',$nome);
+			$atualizanome->bindValue(':senha',$senha);
+			$atualizanome->execute();
+			$visualizalin = $atualizanome->rowCount();
+			
+			if($visualizalin > 0){
+				echo "<script>alert('Nome Atualizado!');</script>";
+				echo "<script>window.location='../paginas/emprestimo.php';</script>";
+			}else{
+				echo "<script>alert('Não foi possivel editar, verifique os dados digitados');</script>";
+			}
 		}
 		public function editarsenha($matricula,$senha,$senhanova){
 		    $con=new Connection();
 			$conn=$con->conexao();
 			
-			$upd="UPDATE usuario SET Senha=:senhanova WHERE Matricula=:matricula and Senha=:senha";
-		        $atualizanome=$conn->prepare($upd);
-    			$atualizanome->bindValue(':matricula',$matricula);
-    			$atualizanome->bindValue(':senhanova',$senhanova);
-    			$atualizanome->bindValue(':senha',$senha);
-    			$atualizanome->execute();
-    			
-    			echo "<script>alert('Senha Editada');</script>";
-    			echo "<script>window.location='../paginas/emprestimo.php';</script>";
+			$upd="UPDATE usuario SET Senha=:senhanova WHERE Matricula=:matricula AND Senha=:senha";
+			$atualizasenha=$conn->prepare($upd);
+			$atualizasenha->bindValue(':matricula',$matricula);
+			$atualizasenha->bindValue(':senhanova',$senhanova);
+			$atualizasenha->bindValue(':senha',$senha);
+			$atualizasenha->execute();
+			$visualizalin=$atualizasenha->rowCount();
+			
+			if($visualizalin > 0){
+				echo "<script>alert('Senha Editada');</script>";
+				echo "<script>window.location='../paginas/emprestimo.php';</script>";
+			}else{
+				echo "<script>alert('Não foi possivel editar, verifique os dados digitados');</script>";
+			}
 		}
 	}
 ?> 

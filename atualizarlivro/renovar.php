@@ -136,8 +136,8 @@
   if (isset($_POST['bt3'])) {
     
     $matricula=$_POST['bt1'];
-    $novadata=date('ymd'); 
-    $novadatafinal=date('ymd')+7;
+    $novadata=date('d-m-y'); 
+    $novadatafinal=date('d-m-y', strtotime('+7 days'));
 
     $objedit=new Emprestimo();
     $objedit->editardata($matricula,$novadata,$novadatafinal);
