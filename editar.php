@@ -36,100 +36,98 @@ session_start();
 </head>
 <body>
      <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(61, 201, 179, 1);">
-    <div class="container">
-      <a class="navbar-brand" href="index.php">Biblioteca</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.php">Inicio
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="paginas/emprestimo.php">Livros</a>
-          </li>
-           <?php 
-            if (isset($_SESSION['logado'])) {
-              echo "
-                <li class='nav-item'>
-                 <div class='btn-group'>
-                      <button type='button' class='btn' id='buttonperson'>".$_SESSION['usuario']."
-                      </button>
-                      <button type='button' class='btn dropdown-toggle dropdown-toggle-split' id='buttonperson' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                        <span class='sr-only'>Dropdown</span>
-                      </button>
-                      <div class='dropdown-menu' id='dropperson'>
-                        <a class='dropdown-item' href='editarusuario/editardados.php'>Opções</a>
-                        <div class='dropdown-divider'></div>
-                        <a class='dropdown-item' href='paginas/login.php?deslogar=1'>Sair</a>
-                      </div>
-                    </div>
-                </li>";
-                
-            }else {
-              echo "
-                <li class='nav-item'>
-                  <a class='nav-link' href='paginas/login.php'>Logar</a>
-                </li>";
-            }
-          ?>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  
-  <div class="limiter">
-    <div class="container-login100">
-      <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-        <form class="login100-form validate-form" action="" method="POST">
-          <span class="login100-form-title p-b-33">
-            Editar
-          </span>
-
-          <div class="container-login100-form-btn m-t-20">
-            <button class="login100-form-btn" name="bt1">
-              Editar Usuário
-            </button>
-          </div><br>
-
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar-primary">
+  <div class="container">
+    <a class="navbar-brand" href="index.php">Biblioteca</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.php">Inicio
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="paginas/emprestimo.php">Livros</a>
+        </li>
           <?php 
-            if (isset($_SESSION['tipo'])) {
-                      echo "
-                      <div class='container-login100-form-btn m-t-20'>
-                    <button class='login100-form-btn' name='bt2'>
-                      Inserir livro
+          if (isset($_SESSION['logado'])) {
+            echo "
+              <li class='nav-item'>
+                <div class='btn-group'>
+                    <button type='button' class='btn' id='buttonperson'>".$_SESSION['usuario']."
                     </button>
-                  </div><br>
-                      <div class='container-login100-form-btn m-t-20'>
-                    <button class='login100-form-btn' name='bt3'>
-                      Editar livros
+                    <button type='button' class='btn dropdown-toggle dropdown-toggle-split' id='buttonperson' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                      <span class='sr-only'>Dropdown</span>
                     </button>
-                  </div><br>
-                      <div class='container-login100-form-btn m-t-20'>
-                <button class='login100-form-btn' name='bt4'>
-                  Renovar emprestimo
-                </button>
-              </div><br>";
+                    <div class='dropdown-menu' id='dropperson'>
+                      <a class='dropdown-item' href='editarusuario/editardados.php'>Opções</a>
+                      <div class='dropdown-divider'></div>
+                      <a class='dropdown-item' href='paginas/login.php?deslogar=1'>Sair</a>
+                    </div>
+                  </div>
+              </li>";
               
-                   }else{
-                    //echo "<div class='container-login100-form-btn m-t-20'>
-              //  <button class='login100-form-btn' name='bt6'>
-              //    Livros Agendados
-              //  </button>
-              //</div><br>";
-                   }
-          ?>
-          
-        </form>
-
-      </div>
+          }else {
+            echo "
+              <li class='nav-item'>
+                <a class='nav-link' href='paginas/login.php'>Logar</a>
+              </li>";
+          }
+        ?>
+      </ul>
     </div>
   </div>
-  
+</nav>
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100 p-l-55 p-r-55 p-t-10 p-b-10">
+      <form class="login100-form validate-form" action="" method="POST">
+        <span class="login100-form-title p-b-33">
+          Editar
+        </span>
+
+        <div class="container-login100-form-btn m-t-10">
+          <button class="login100-form-btn" name="bt1">
+            Editar Usuário
+          </button>
+        </div><br>
+
+        <?php 
+          if (isset($_SESSION['tipo'])) {
+                    echo "
+                    <div class='container-login100-form-btn m-t-20'>
+                  <button class='login100-form-btn' name='bt2'>
+                    Inserir livro
+                  </button>
+                </div><br>
+                    <div class='container-login100-form-btn m-t-20'>
+                  <button class='login100-form-btn' name='bt3'>
+                    Editar livros
+                  </button>
+                </div><br>
+                    <div class='container-login100-form-btn m-t-20'>
+              <button class='login100-form-btn' name='bt4'>
+                Renovar emprestimo
+              </button>
+            </div><br>";
+            
+                  }else{
+                  //echo "<div class='container-login100-form-btn m-t-20'>
+            //  <button class='login100-form-btn' name='bt6'>
+            //    Livros Agendados
+            //  </button>
+            //</div><br>";
+                  }
+        ?>
+        
+      </form>
+
+    </div>
+  </div>
+</div>
 
   
 <!--===============================================================================================-->
